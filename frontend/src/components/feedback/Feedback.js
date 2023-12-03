@@ -2,12 +2,15 @@
 import React from "react";
 import FeedbackForm from "./FeedbackForm";
 import "./Feedback.css";
-
+import Navbar from "../navbar/Navbar";
 const Feedback = () => {
   return (
-    <div>
+    <>
+      <Navbar />
+      <div className="mainFeedback bodyFeedback">
       <FeedbackForm />
-    </div>
+      </div>
+    </>
   );
 }
 export default Feedback;

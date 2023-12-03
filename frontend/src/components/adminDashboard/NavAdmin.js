@@ -1,171 +1,173 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useState } from "react";
 
-function NavAdmin() {
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const [isNavbarTransparent, setIsNavbarTransparent] = useState(true);
+import React, { useEffect } from "react";
+import "../navbar/Navbar.css";
+import { Link } from "react-router-dom";
 
-  const handleScroll = () => {
-    const scrollPosition = window.scrollY;
+const NavBar = () => {
+  useEffect(() => {
+    const navbar = document.querySelector(".navbar");
+    navbar.classList.add("fade-in");
+  }, []);
 
-    // Set the transparency based on the scroll position
-    setIsNavbarTransparent(scrollPosition < 100);
+  const displayMenuBar = (x) => {
+    if (x.matches) {
+      document.getElementById("menuBar").style.display = "block";
+      document.getElementById("lists").style.display = "none";
+    } else {
+      document.getElementById("menuBar").style.display = "none";
+      document.getElementById("lists").style.display = "block";
+    }
   };
 
-  const displayMenuBar = () => {
-    const menuBar = document.getElementById("menuBar");
-    const lists = document.getElementById("lists");
-
-    if (isSmallScreen) {
-      menuBar.style.display = "block";
-      lists.style.display = "none";
+  const displayText = (y) => {
+    const elements = document.getElementsByClassName("displayNone");
+    if (y.matches) {
+      for (let i = 0; i < elements.length; i++) {
+        elements[i].style.display = "none";
+      }
+      document.getElementById("donateBtn").style.marginTop = ".1rem";
     } else {
-      menuBar.style.display = "none";
-      lists.style.display = "block";
+      for (let i = 0; i < elements.length; i++) {
+        elements[i].style.display = "block";
+        document.getElementById("donateBtn").style.marginTop = "1.3rem";
+      }
     }
   };
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 88.438 * 16);
-    };
+    const x = window.matchMedia("(max-width: 68.438rem)");
+    const y = window.matchMedia("(max-width: 88.438rem)");
 
-    handleResize();
+    displayText(y);
+    displayMenuBar(x);
 
-    window.addEventListener("resize", handleResize);
+    const handleTextChange = () => displayText(y);
+    const handleMenuBarChange = () => displayMenuBar(x);
+
+    y.addListener(handleTextChange);
+    x.addListener(handleMenuBarChange);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      y.removeListener(handleTextChange);
+      x.removeListener(handleMenuBarChange);
     };
   }, []);
-
-  useEffect(() => {
-    displayMenuBar();
-  }, [isSmallScreen]);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const titleColor = {
-    color: "#03a696",
-    fontSize: "1.5rem",
-    fontWeight: "bold",
-  };
-  const customPadding = {
-    paddingLeft: "4rem",
-  };
-  const customPadding2 = {
-    marginLeft: "2.8rem",
-  };
 
   return (
-    <div>
-      <nav
-        class={`navbar navbar-dark  fixed-top ${
-          isNavbarTransparent ? "" : ""
-        }`}
-      >
-        <div class="container-fluid">
-          <a class="navbar-brand text-success flex_custom" href="#">
-            <div class="logo"></div>
-            <div class="alignSelf_custom">
-              <h2 style={titleColor}>GOODWILL</h2>
-            </div>
-          </a>
-          <div id="lists">
-            <ul class="navbar-nav flex-row justify-content-end">
+    <nav className="navbar navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <Link class="navbar-brand customTextColor flex_custom" to="/">
+          <div class="logo"></div>
+          <div class="alignSelf_custom">
+            <h2>
+              <span class="displayNone customTextColor">GOODWILL</span>
+            </h2>
+          </div>
+        </Link>
+        <div id="lists">
+          <ul class="navbar-nav flex-row justify-content-end">
+            <li class="nav-item">
+              <Link
+                class="nav-link customTextColor paddingR_custom paddingL_custom font_custom "
+                aria-current="page"
+                to="/"
+              >
+                <i class="fa fa-home pla1"></i>
+                <span class="displayNone">Home</span>
+              </Link>
+            </li>
+            <li class="nav-item dropdown">
+              <Link
+                class="nav-link customTextColor paddingR_custom font_custom"
+                to="/adminDashboard"
+                aria-haspopup="true"
+                role="button"
+                aria-expanded="false"
+              >
+                <i className="fa fa-dashboard"></i>
+                <span class="displayNone">Dashboard</span>
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link
+                class="nav-link btn customTextColor paddingR_custom font_custom cursor-pointer "
+                to="/"
+              >
+                <i class="fas fa-sign-out-alt "></i>&nbsp;{" "}
+                <span class="displayNone">Sign Out</span>
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div id="menuBar">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasDarkNavbar"
+            aria-controls="offcanvasDarkNavbar"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+        <div
+          class="offcanvas offcanvas-start text-bg-dark"
+          tabindex="-1"
+          id="offcanvasDarkNavbar"
+          aria-labelledby="offcanvasDarkNavbarLabel"
+        >
+          <button
+            type="button"
+            class="btn-close btn-close-white pla46"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+          <div class="offcanvas-header">
+            <Link class="navbar-brand customTextColor" to="/">
+              <div class="logoAtVertNav"></div>
+              <div class="alignSelf_custom p-5">
+                <h2 class="customTextColor pla">GOODWILL</h2>
+              </div>
+            </Link>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a
-                  class="nav-link text-success paddingR_custom paddingL_custom font_custom "
+                <Link
+                  class="nav-link customTextColor font_custom p-4"
                   aria-current="page"
-                  href="#"
+                  to="/"
                 >
-                  <i className="fa fa-dashboard"></i>&nbsp; DashBoard
-                </a>
+                  <center>
+                    <i class="fa fa-home"></i>&nbsp;Home
+                  </center>
+                </Link>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link btn text-success paddingR_custom font_custom cursor-pointer "
-                  href="#"
+                <Link
+                  class="nav-link customTextColor font_custom p-4"
+                  to="/adminDashboard"
+                >
+                  <center>
+                    <i className="fa fa-dashboard"></i>&nbsp; DashBoard
+                  </center>
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link
+                  class="nav-link btn customTextColor paddingR_custom font_custom cursor-pointer p-4"
+                  to="/login"
                 >
                   <i class="fas fa-sign-out-alt"></i>&nbsp; Sign Out
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
-          <div id="menuBar">
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasDarkNavbar"
-              aria-controls="offcanvasDarkNavbar"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          </div>
-          <div
-            class="offcanvas offcanvas-end text-bg-dark"
-            tabindex="-1"
-            id="offcanvasDarkNavbar"
-            aria-labelledby="offcanvasDarkNavbarLabel"
-          >
-            <button
-              type="button"
-              class="btn-close btn-close-white"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            ></button>
-            <div class="offcanvas-header">
-              <a class="navbar-brand text-success" href="#">
-                <div style={customPadding}>
-                  <div class="logoAtVertNav" style={customPadding2}></div>
-                  <div class="alignSelf_custom p-5">
-                    <h2 style={titleColor}>GOODWILL</h2>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item">
-                  <a
-                    class="nav-link text-success font_custom p-4"
-                    aria-current="page"
-                    href="#"
-                  >
-                    <center>
-                      <i class="fa fa-home"></i>&nbsp;Home
-                    </center>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-success font_custom p-4" href="#">
-                    <center>
-                      <i className="fa fa-dashboard"></i>&nbsp; DashBoard
-                    </center>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link btn text-success paddingR_custom font_custom cursor-pointer p-4"
-                    href="#"
-                  >
-                    <i class="fas fa-sign-out-alt"></i>&nbsp; Sign Out
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
-}
+};
 
-export default NavAdmin;
+export default NavBar;

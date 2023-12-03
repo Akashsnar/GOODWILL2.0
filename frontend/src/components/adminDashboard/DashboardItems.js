@@ -1,7 +1,8 @@
+//DashboardItems.js
 import React from "react";
 import "./AdminDashboard.css";
 import DashboardItem from "./DashboardItem";
-
+import { Link } from "react-router-dom";
 function DashboardItems() {
   return (
     <>
@@ -19,41 +20,59 @@ function DashboardItems() {
                 justifyContent: "space-evenly",
               }}
             >
-              <DashboardItem
-                iconClass="fa-users"
-                bgColor="#8561C8"
-                link="#"
-                count="10"
-                title="NGOs"
-              />
-              <DashboardItem
-                iconClass="fa-user"
-                bgColor="#00B8ED"
-                link="#"
-                count="20"
-                title="Users"
-              />
-              <DashboardItem
-                iconClass="fa-comment"
-                bgColor="#68C182"
-                link="#"
-                count="5"
-                title="Reviews"
-              />
-              <DashboardItem
-                iconClass="fa-blog"
-                bgColor="#FFB54D"
-                link="#"
-                count="8"
-                title="Blog"
-              />
-              <DashboardItem
-                iconClass="fa-info-circle"
-                bgColor="#989fa8"
-                link="#"
-                count="3"
-                title="Report"
-              />
+              <Link to="/adminDashboard/NGOsTable">
+                <DashboardItem
+                  iconClass="fa-users"
+                  bgColor="#8561C8"
+                  link="#"
+                  count="10"
+                  title="NGOs"
+                />
+              </Link>
+              <Link to="/adminDashboard/UserTable">
+                <DashboardItem
+                  iconClass="fa-regular fa-user"
+                  bgColor="#00B8ED"
+                  count="20"
+                  title="Users"
+                />
+              </Link>
+              <Link to="/adminDashboard/ReviewsTable">
+                <DashboardItem
+                  iconClass="fa-regular fa-comment-dots"
+                  bgColor="#68C182"
+                  link="#"
+                  count="5"
+                  title="Reviews"
+                />
+              </Link>
+              <Link to="/adminDashboard/FeedbackTable">
+                <DashboardItem
+                  iconClass="fa-regular fa-message"
+                  bgColor="#9e0740"
+                  link="#"
+                  count="8"
+                  title="Feedbacks"
+                />
+              </Link>
+              <Link to="/adminDashboard">
+                <DashboardItem
+                  iconClass="fa-blog"
+                  bgColor="#FFB54D"
+                  link="#"
+                  count="8"
+                  title="Blog"
+                />
+              </Link>
+              {/* <Link to="/adminDashboard/ReportsTable">
+                <DashboardItem
+                  iconClass="fa-info-circle"
+                  bgColor="#989fa8"
+                  link="#"
+                  count="3"
+                  title="Report"
+                />
+              </Link> */}
             </div>
           </div>
         </div>

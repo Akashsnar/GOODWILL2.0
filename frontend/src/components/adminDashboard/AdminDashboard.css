@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: "Shadows Into Light", monospace;
 }
 
 .paddingR_custom {
@@ -41,7 +42,6 @@
 
 .font_custom {
   font-weight: bold;
-  font-family: "Merriweather", serif;
   font-size: larger;
 }
 
@@ -110,6 +110,8 @@ li:hover {
 
 .dashboard-item:hover {
   box-shadow: 0px 0px 1.563rem #888;
+  width: 9.5rem;
+  height: 9.5rem;
 }
 
 .menuCircle {
@@ -119,8 +121,8 @@ li:hover {
 }
 
 .circle {
-  width: 15rem;
-  height: 15rem;
+  width: 13.5rem;
+  height: 13.5rem;
   opacity: 0;
 }
 
@@ -128,9 +130,9 @@ li:hover {
   position: relative;
   top: -14.063rem;
 }
-#iconID{
-  font-size:2.5rem;
-  color: acliceblue;
+#iconID {
+  font-size: 2.5rem;
+  color: rgba(250, 235, 215, 0.781);
 }
 
 .axy {
@@ -139,7 +141,7 @@ li:hover {
 }
 .countdata {
   font-size: 1rem;
-  color: rgb(4, 25, 145);
+  color: #ff6d12;
 }
 .countdata:hover {
   color: #03a696;
@@ -163,7 +165,7 @@ li:hover {
 }
 .messagesArea {
   width: 30vw;
-  height: 42vh;
+  height: 45vh;
   overflow-y: auto;
   z-index: 2;
   box-shadow: 0px 0px 1rem #999;
@@ -176,4 +178,10 @@ li:hover {
 }
 .messagesArea:hover {
   box-shadow: 0px 0px 1.563rem #888;
+}
+.shiftIcon{
+  margin-left:95% ;
+}
+.iconS{
+  font-size: 1rem;
 }

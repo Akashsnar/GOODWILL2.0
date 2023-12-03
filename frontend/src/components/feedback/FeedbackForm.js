@@ -27,9 +27,9 @@ const FeedbackForm = () => {
   };
 
   return (
-    <form className="feedback-form" onSubmit={handleSubmit}>
+    <form className="feedbackForm" onSubmit={handleSubmit}>
       <header>
-        <h1>Feedback Form</h1>
+        <h1 className="feedbackHeader">Feedback Form</h1>
       </header>
       <FeedbackInput
         label="Name"
@@ -44,7 +44,7 @@ const FeedbackForm = () => {
         onChange={(value) => handleInputChange("email", value)}
       />
 
-      <FeedbackRadioButtons
+      <FeedbackRadioButtons className="feedbackRadioButtons"
         legend="Did you find what you needed?"
         options={["Yes, all of it", "Yes, some of it", "No, none of it"]}
         name="choice"
