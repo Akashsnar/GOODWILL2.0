@@ -12,7 +12,7 @@ const DashboardItem = ({ iconClass, bgColor, link, count, title }) => (
           style={{ backgroundColor: bgColor }}
         >
           <span className={`fa ${iconClass}`} id="iconID"></span>
-          <sub className="countdata">{count}</sub>
+          {/* <sub className="countdata">{count}</sub> */}
         </button>
       </a>
     </div>

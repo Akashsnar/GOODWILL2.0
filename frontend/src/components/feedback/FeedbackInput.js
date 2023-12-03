@@ -22,7 +22,7 @@ const FeedbackInput = ({ label, type, name, onChange }) => {
   return (
     <div>
       <label htmlFor={name}>
-        {label} <span className="required">* &nbsp;</span>
+        {label}<sup className="feedbackRequired">* &nbsp;</sup>
         {error && <span className="error-message ">{error}</span>}
       </label>
       <div>
@@ -34,6 +34,7 @@ const FeedbackInput = ({ label, type, name, onChange }) => {
           required
           value={inputValue}
           onChange={handleInputChange}
+          className="feedbackInput"
         />
       </div>
     </div>

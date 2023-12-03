@@ -21,17 +21,15 @@ const FeedbackRating = ({ title, onChange }) => {
         <center>
           <legend>
             <b>Rate {title}</b>
-            <span className="required">*</span>
+            <sup className="feedbackRequired">*</sup>
           </legend>
         </center>
-        {/* Rating Section Content */}
         <div className="feedbackBox">
           <div className="emoji">
             <div
               id="emoji"
               style={{ transform: `translateX(${emojiTransform}px)` }}
             >
-              {/* Emoji images */}
               <img
                 src="https://iili.io/J9rbT8J.png"
                 alt="Very Bad"
@@ -48,7 +46,7 @@ const FeedbackRating = ({ title, onChange }) => {
             </div>
           </div>
           <p id="p">{feedbackText}</p>
-          <div className="rating">
+          <div className="ratingFeedback">
             {[...Array(5)].map((_, index) => (
               <i
                 key={index}
